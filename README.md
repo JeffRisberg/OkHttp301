@@ -1,4 +1,4 @@
 # Running the examples
 
-OkHttp3 makes ot easy to invoke REST servers.
+OkHttp3 makes to easy to invoke REST servers.
 
