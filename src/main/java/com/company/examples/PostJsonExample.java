@@ -28,7 +28,7 @@ public class PostJsonExample {
         accessParamMap.put("descriptionElementId", "submit_description");
         accessParamMap.put("formElementId", "submit_form");
         accessParamMap.put("subjectElementId", "submit_subject");
-        accessParamMap.put("restServer", "https://api.prod2.aisera.com/restserver");
+        accessParamMap.put("restServer", "https://api.prod2.company.com/restserver");
         accessParamMap.put("successUrl", "http://ncoding.io/index.html");
 
         JSONObject bodyJson = new JSONObject();
