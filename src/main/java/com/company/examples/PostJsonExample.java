@@ -7,6 +7,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -18,6 +20,7 @@ public class PostJsonExample {
     OkHttpClient client = new OkHttpClient();
 
     ObjectMapper objectMapper = new ObjectMapper();
+    JSONParser jsonParser = new JSONParser();
 
     String post(String url) throws IOException {
 
@@ -37,8 +40,8 @@ public class PostJsonExample {
         //bodyJson.put("tenantId", tenantId);
         //bodyJson.put("tenantUserId", channel.getTenantUserId());
         //bodyJson.put("channelName", channel.getChannelName());
-        bodyJson.put("appKey", null);
-        bodyJson.put("token", null);
+        bodyJson.put("appKey", "12345678");
+        bodyJson.put("token", "qwertyuiop");
 
         StringWriter stringWriter = new StringWriter();
         bodyJson.writeJSONString(stringWriter);
@@ -51,14 +54,27 @@ public class PostJsonExample {
                 .post(body)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+            JSONObject responseBodyAsJson = (JSONObject) jsonParser.parse(response.body().string());
+
+            JSONObject accessParamsJsonFromServer = (JSONObject) responseBodyAsJson.get("data");
+
+            String token = accessParamsJsonFromServer.get("token").toString();
+            System.out.println("token: " + token);
+
+            String appKey = accessParamsJsonFromServer.get("appKey").toString();
+            System.out.println("appKey: " + appKey);
+
+            return "";
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
         }
     }
 
     public static void main(String[] args) throws IOException {
         PostJsonExample example = new PostJsonExample();
 
-        String response = example.post("http://www.roundsapp.com/post");
+        String response = example.post("http://postman-echo.com/post");
         System.out.println(response);
     }
 }
