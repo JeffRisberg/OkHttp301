@@ -52,7 +52,8 @@ public class PutExample {
 
     public static void main(String[] args) throws IOException {
         PutExample example = new PutExample();
-        String response = example.run("http://www.roundsapp.com/post");
+        String json = "";
+        String response = example.run("http://www.roundsapp.com/post", json);
         System.out.println(response);
     }
 }
