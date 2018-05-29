@@ -1,7 +1,7 @@
 package com.company.examples;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.xml.internal.bind.v2.model.core.TypeRef;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -28,55 +28,9 @@ public class GetJsonExample {
         GetJsonExample example = new GetJsonExample();
         String response = example.run("https://jsonplaceholder.typicode.com/posts");
         System.out.println(response);
-        List<SimplePost> posts = objectMapper.readValue(response, new TypeRef<List<SimplePost>>(){});
-    }
-
-    class SimplePost {
-        int id;
-        int userId;
-        String title;
-        String body;
-
-        public SimplePost() {
-        }
-
-        public SimplePost(int id, int userId, String title, String body) {
-            this.id = id;
-            this.userId = userId;
-            this.title = title;
-            this.body = body;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public int getUserId() {
-            return userId;
-        }
-
-        public void setUserId(int userId) {
-            this.userId = userId;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getBody() {
-            return body;
-        }
-
-        public void setBody(String body) {
-            this.body = body;
-        }
+        List<SimplePost> posts = objectMapper.readValue(response, new TypeReference<List<SimplePost>>() {
+        });
+        System.out.println(posts);
+        System.out.println("size:" + posts.size());
     }
 }
