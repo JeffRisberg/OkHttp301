@@ -22,9 +22,9 @@ public class PostJsonFormExample {
     String post(String url) throws IOException {
 
         RequestBody formBody = new FormBody.Builder()
-                .add("search", "Jurassic Park")
                 .add("tenantId", "10000")
-                .add("type", "Salesforce")
+                .add("dataSourceId", "1")
+                .add("type", "SalesForce")
                 .add("parameters", "{\"alpha\": 56, \"beta\": \"elephant\"}")
                 .add("data", "{\"gamma\": 123, \"delta\": \"zebra\"}")
                 .build();
@@ -46,7 +46,7 @@ public class PostJsonFormExample {
     public static void main(String[] args) throws IOException {
         PostJsonFormExample example = new PostJsonFormExample();
 
-        String response = example.post("http://postman-echo.com/post");
+        String response = example.post("http://localhost:32750/api/v1/incidents/incident");
         System.out.println(response);
     }
 }
