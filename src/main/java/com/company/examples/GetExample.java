@@ -20,6 +20,7 @@ public class GetExample {
     }
 
     public static void main(String[] args) throws IOException {
+        System.out.println("GetExample");
         GetExample example = new GetExample();
         String response = example.run("https://raw.github.com/square/okhttp/master/README.md");
         System.out.println(response);
