@@ -1,3 +1,5 @@
+package com.company.examples;
+
 import org.junit.Test;
 
 public class ExampleTest {
