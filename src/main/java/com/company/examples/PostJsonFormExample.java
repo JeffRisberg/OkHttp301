@@ -9,8 +9,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 
 public class PostJsonFormExample {
-    public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     public static final MediaType FORM = MediaType.parse("application/form-data");
 
