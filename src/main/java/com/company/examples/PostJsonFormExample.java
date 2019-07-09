@@ -22,11 +22,8 @@ public class PostJsonFormExample {
     String post(String url) throws IOException {
 
         RequestBody formBody = new FormBody.Builder()
-                .add("tenantId", "10000")
-                .add("dataSourceId", "1")
-                .add("type", "SalesForce")
-                .add("parameters", "{\"alpha\": 56, \"beta\": \"elephant\"}")
-                .add("data", "{\"gamma\": 123, \"delta\": \"zebra\"}")
+                .add("login", "jeff@aisera.com")
+                .add("password", "jeff")
                 .build();
         Request request = new Request.Builder()
                 .post(formBody)
@@ -34,7 +31,8 @@ public class PostJsonFormExample {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            JSONObject responseBodyAsJson = (JSONObject) jsonParser.parse(response.body().string());
+            String bodyStr = response.body().string();
+            JSONObject responseBodyAsJson = (JSONObject) jsonParser.parse(bodyStr);
 
             return responseBodyAsJson.toJSONString();
         } catch (ParseException e) {
@@ -46,7 +44,7 @@ public class PostJsonFormExample {
     public static void main(String[] args) throws IOException {
         PostJsonFormExample example = new PostJsonFormExample();
 
-        String response = example.post("http://localhost:32750/api/v1/incidents/incident");
+        String response = example.post("http://localhost:1234/connector-server/v1/tenants/10000/login");
         System.out.println(response);
     }
 }

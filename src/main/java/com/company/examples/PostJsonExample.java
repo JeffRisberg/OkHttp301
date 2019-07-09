@@ -14,8 +14,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 public class PostJsonExample {
-    public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     OkHttpClient client = new OkHttpClient();
 
@@ -36,10 +35,6 @@ public class PostJsonExample {
 
         JSONObject bodyJson = new JSONObject();
         bodyJson.put("accessParamMap", accessParamMap);
-        //bodyJson.put("channelTypeId", channel.getChannelTypeId());
-        //bodyJson.put("tenantId", tenantId);
-        //bodyJson.put("tenantUserId", channel.getTenantUserId());
-        //bodyJson.put("channelName", channel.getChannelName());
         bodyJson.put("appKey", "12345678");
         bodyJson.put("token", "qwertyuiop");
 
@@ -58,11 +53,17 @@ public class PostJsonExample {
 
             JSONObject accessParamsJsonFromServer = (JSONObject) responseBodyAsJson.get("data");
 
-            String token = accessParamsJsonFromServer.get("token").toString();
-            System.out.println("token: " + token);
+            String respToken = accessParamsJsonFromServer.get("token").toString();
+            System.out.println("token: " + respToken);
 
-            String appKey = accessParamsJsonFromServer.get("appKey").toString();
-            System.out.println("appKey: " + appKey);
+            String respAppKey = accessParamsJsonFromServer.get("appKey").toString();
+            System.out.println("appKey: " + respAppKey);
+
+            JSONObject respAccessParamMap = (JSONObject) accessParamsJsonFromServer.get("accessParamMap");
+            System.out.println("accessParamMap: " + respAccessParamMap);
+
+            String respColorTheme = (String) respAccessParamMap.get("colorTheme");
+            System.out.println("respColorTheme: " + respColorTheme);
 
             return "";
         } catch (ParseException e) {
