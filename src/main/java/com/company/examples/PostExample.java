@@ -7,12 +7,16 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class PostExample {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    OkHttpClient client = new OkHttpClient();
+    OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(1, TimeUnit.SECONDS)
+            .readTimeout(4, TimeUnit.SECONDS)
+            .build();
 
     String post(String url, String json) throws IOException {
         RequestBody body = RequestBody.create(JSON, json);
