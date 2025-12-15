@@ -81,7 +81,7 @@ public class GetJsonExample {
             System.out.println("Response received (first 200 chars): " + 
                     response.substring(0, Math.min(200, response.length())) + "...");
             
-            List<SimplePost> posts = objectMapper.readValue(response, new TypeReference<List<SimplePost>>() {
+            List<SimplePostExample> posts = objectMapper.readValue(response, new TypeReference<List<SimplePostExample>>() {
             });
             
             System.out.println("Successfully parsed " + posts.size() + " posts");
