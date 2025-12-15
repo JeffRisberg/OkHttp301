@@ -1,15 +1,15 @@
 package com.company.examples;
 
-public class SimplePost {
+public class SimplePostExample {
     int id;
     int userId;
     String title;
     String body;
 
-    public SimplePost() {
+    public SimplePostExample() {
     }
 
-    public SimplePost(int id, int userId, String title, String body) {
+    public SimplePostExample(int id, int userId, String title, String body) {
         this.id = id;
         this.userId = userId;
         this.title = title;
